@@ -36,7 +36,11 @@ console.log(getLetterGrade(65)); // This should print "Your grade is: F"
 
 **Part A**: Explain why this bug is occurring. Use proper technical terminology.
 
+The bug occurring in this code example is the variable letter is invoked using let. But the issue is that variable letter isn't set to a const variable and is reassigned every time letter is called in the if/ else if statements making it never be assigned a true assigned value so it will always run as undefined.
+
 **Part B**: Then, explain how you would fix it.
+ 
+ I would fix this code by altering the const
 
 ### Response 1
 
@@ -44,9 +48,13 @@ console.log(getLetterGrade(65)); // This should print "Your grade is: F"
 
 Your response...
 
+The bug occurring in this code example is the variable letter is invoked using let to reassign block scopes. But the issue is that variable letter is reassigned every time letter is called in the if/ else if statements making it never be assigned a true assigned value so it will always run as undefined.
+
 **Part B:**
 
 Your response...
+
+I would remove let from all of the if / else if statements so that the code can update the values of letter without shadowing over each other.
 
 ---
 
@@ -71,10 +79,20 @@ console.log(originalSettings.volume);
 
 Your response...
 
+75 would be logged onto the console because newSettings and originalSettings when set equal to each other share the same object in memory. This means that when newSettings.volume = 75. When you console log "originalSettings.volume" it will reference the object and mutate it.
+
 **Part B:**
 
 Your response...
 
+```js
+
+const originalSettings = { volume: 50, brightness: 80 };
+const newSettings = {...originalSettings}; // spread operator helps prevent creating a shallow copy like original code did.
+newSettings.volume = 75;
+console.log(originalSettings.volume); 
+
+```
 **Corrected Code:**
 
 ```js
@@ -111,3 +129,21 @@ Walk through what happens in the first iteration of filter:
 ### Response 3
 
 Your response...
+
+In the First Iteration of filter:
+
+- The value of `product` is going to be the first object/ product that is stored inside of the products array which is 
+
+```js 
+
+{ name: "Laptop", price: 1000, inStock: true } 
+
+```
+
+In the First Iteration of filter:
+
+- `True` is returned in the callback function because it starts with the 0 index value in the object which is "Laptop" 
+isStock is the key value paired to the value `True`
+
+
+- filter uses the key values: values stored in inStock, and if boolean is true, the value will be kept, and added into the new array itemsInStock and returned.
